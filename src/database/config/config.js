@@ -19,5 +19,6 @@ module.exports = {
 	},
 	production: {
 		url: process.env.DB_PROD_URL,
+		dialectOptions: dialect_option
 	},
 };
