@@ -17,7 +17,6 @@ module.exports = {
       "Users",
       [
         {
-          id: 1,
           fullName: "Jabo Admin",
           userName: "Jabo",
           phoneNumber: "1234567890",
@@ -32,7 +31,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          id: 2,
           fullName: "Aphrodis Admin",
           userName: "aphrodis",
           phoneNumber: "0987654321",

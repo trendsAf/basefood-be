@@ -39,9 +39,9 @@ const user_model = (sequelize: Sequelize) => {
     {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
-        defaultValue: DataTypes.INTEGER,
       },
       fullName: {
         allowNull: false,

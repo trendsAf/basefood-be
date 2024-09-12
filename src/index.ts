@@ -4,13 +4,13 @@ import { PORT } from "./utils/keys";
 
 import app from "./app";
 const startServer = async () => {
-	await connectionToDatabase();
+  await connectionToDatabase();
 
-	const server = http.createServer(app);
+  const server = http.createServer(app);
 
-	server.listen(PORT, async () => {
-		console.log(`Server is running at http://localhost:${PORT}`);
-	});
+  server.listen(PORT, async () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+  });
 };
 
 startServer();
