@@ -1,5 +1,5 @@
 export const HOST = process.env.HOST;
-export const PORT = process.env.PORT;
+export const PORT = process.env.PORT || 4000;
 export const BASE_URL = process.env.BASE_URL;
 export const DEPLOYED_URL = process.env.DEPLOYED_URL;
 export const SERVER_URL = process.env.SERVER_URL;
