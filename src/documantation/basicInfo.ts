@@ -14,8 +14,8 @@ const basicInfo = {
       description: "Development server",
     },
     {
-      url: DEPLOYED_URL,
-      description: "Production server (HTTPS)",
+      url: `${DEPLOYED_URL}/api/v1`,
+      description: "Production server",
     },
   ],
   security: [
