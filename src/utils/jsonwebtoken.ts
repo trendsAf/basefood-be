@@ -7,7 +7,7 @@ export const generateToken = async (user: Partial<UserModelAttributes>) => {
   const accessToken = sign(
     {
       id: user.id,
-      roleId: user.roleId,
+      role: user.role,
       email: user.email,
     },
     `${jwtSecret}`,

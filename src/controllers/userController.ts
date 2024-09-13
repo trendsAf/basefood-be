@@ -8,35 +8,30 @@ import {
   updateUser,
 } from "../services/userService";
 import { comparePasswords } from "../utils/hashPassword";
-import User from "../database/models/User";
 import { generateToken } from "../utils/jsonwebtoken";
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
     const {
-      fullName,
+      firstName,
+      lastName,
       email,
-      userName,
-      password,
-      phoneNumber,
       companyName,
       companyAddress,
-      companyType,
       companyCategory,
-      roleId,
+      position,
+      password,
     } = req.body;
 
     const newUser = await createUser(
-      fullName,
+      firstName,
+      lastName,
       email,
-      userName,
-      password,
-      phoneNumber,
       companyName,
       companyAddress,
-      companyType,
       companyCategory,
-      roleId
+      position,
+      password
     );
 
     if (!newUser) {
@@ -82,7 +77,17 @@ export const userLogin = async (req: Request, res: Response) => {
       status: 200,
       message: "You're logged in",
       token: accessToken,
-      user,
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        companyName: user.companyName,
+        companyAddress: user.companyAddress,
+        companyCategory: user.companyCategory,
+        position: user.position,
+        role: user.role,
+      },
     });
   } catch (error: any) {
     return res.status(500).json({

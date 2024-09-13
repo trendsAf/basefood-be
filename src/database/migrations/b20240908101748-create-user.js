@@ -5,15 +5,15 @@ module.exports = {
     await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        autoIncrement: true,
       },
-      fullName: {
+      firstName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      phoneNumber: {
+      lastName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -25,15 +25,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      companyType: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       companyCategory: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      userName: {
+      position: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -42,13 +38,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      roleId: {
-        type: Sequelize.INTEGER,
+      role: {
+        type: Sequelize.ENUM("admin", "user"),
         allowNull: false,
-        references: {
-          model: "Roles",
-          key: "id",
-        },
+        defaultValue: "user"
       },
       password: {
         type: Sequelize.STRING,

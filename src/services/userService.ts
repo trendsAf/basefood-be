@@ -26,16 +26,14 @@ export const getUserById = async (id: number) => {
 };
 
 export const createUser = async (
-  fullName: string,
+  firstName: string,
+  lastName: string,
   email: string,
-  userName: string,
-  password: string,
-  phoneNumber: string,
   companyName: string,
   companyAddress: string,
-  companyType: string,
   companyCategory: string,
-  roleId: number
+  position: string,
+  password: string
 ): Promise<User | null> => {
   const existingUser = await User.findOne({ where: { email } });
   if (existingUser) {
@@ -45,16 +43,14 @@ export const createUser = async (
   const hashedPassword = await hashPassword(password);
 
   const user = await User.create({
-    fullName,
+    firstName,
+    lastName,
     email,
-    userName,
-    password: hashedPassword,
-    phoneNumber,
     companyName,
     companyAddress,
-    companyType,
     companyCategory,
-    roleId,
+    position,
+    password: hashedPassword,
   });
 
   return user;
@@ -62,7 +58,7 @@ export const createUser = async (
 
 export const updateUser = async (
   id: number,
-  updateData: Partial<Omit<UserModelAttributes, "id">>
+  updateData: Partial<Omit<UserModelAttributes, "id" | "password">>
 ): Promise<User | null> => {
   try {
     const user = await User.findByPk(id);

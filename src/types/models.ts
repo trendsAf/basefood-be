@@ -8,16 +8,15 @@ export type roleCreationAttributes = Optional<roleModelAttributes, "id">;
 
 export interface UserModelAttributes {
   id?: number;
-  fullName: string;
-  userName: string;
-  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   companyName: string;
   companyAddress: string;
-  companyType: string;
   companyCategory: string;
-  email: string;
-  roleId: number;
+  position: string;
   password: string;
+  role?: string;
 }
 
 export type ProductCreationAttributes = Omit<ProductAttributes, "id">;

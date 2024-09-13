@@ -10,37 +10,34 @@ const hashPassword = async (password) => {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface) {
-    const adminRoleId = 5;
     const hashedPassword = await hashPassword("Test@123");
 
     await queryInterface.bulkInsert(
       "Users",
       [
         {
-          fullName: "Jabo Admin",
-          userName: "Jabo",
-          phoneNumber: "1234567890",
+          firstName: "Jabo",
+          lastName: "Admin",
           companyName: "Admin Company",
           companyAddress: "Admin Address",
-          companyType: "Administration",
           companyCategory: "Management",
+          position: "Administrator",
           email: "jabo@gmail.com",
           password: hashedPassword,
-          roleId: adminRoleId,
+          role: "admin",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          fullName: "Aphrodis Admin",
-          userName: "aphrodis",
-          phoneNumber: "0987654321",
+          firstName: "Aphrodis",
+          lastName: "Admin",
           companyName: "Admin Company",
           companyAddress: "Admin Address",
-          companyType: "Administration",
           companyCategory: "Management",
+          position: "Administrator",
           email: "aphrodis@gmail.com",
           password: hashedPassword,
-          roleId: adminRoleId,
+          role: "admin",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

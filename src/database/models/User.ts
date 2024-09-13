@@ -4,34 +4,28 @@ import { UserModelAttributes } from "../../types/models";
 
 interface UserAttributes {
   id?: number;
-  fullName: string;
-  userName: string;
-  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   companyName: string;
   companyAddress: string;
-  companyType: string;
   companyCategory: string;
-  email: string;
-  roleId: number;
+  position: string;
   password: string;
+  role?: string;
 }
 
 export class User extends Model<UserAttributes> {
   public id!: number;
-  public fullName!: string;
-  public phoneNumber!: string;
+  public firstName!: string;
+  public lastName!: string;
   public companyName!: string;
   public companyAddress!: string;
-  public companyType!: string;
   public companyCategory!: string;
-  public userName!: string;
+  public position!: string;
   public email!: string;
-  public roleId!: number;
+  public role!: string;
   public password!: string;
-
-  public static associate(models: { Role: typeof database_models.Role }) {
-    User.belongsTo(models.Role, { as: "Roles", foreignKey: "roleId" });
-  }
 }
 
 const user_model = (sequelize: Sequelize) => {
@@ -43,11 +37,11 @@ const user_model = (sequelize: Sequelize) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      fullName: {
+      firstName: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      phoneNumber: {
+      lastName: {
         allowNull: false,
         type: DataTypes.STRING,
       },
@@ -59,15 +53,11 @@ const user_model = (sequelize: Sequelize) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      companyType: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       companyCategory: {
-        allowNull: false,
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      userName: {
+      position: {
         allowNull: false,
         type: DataTypes.STRING,
       },
@@ -76,12 +66,12 @@ const user_model = (sequelize: Sequelize) => {
         unique: true,
         type: DataTypes.STRING,
       },
-      roleId: {
+      role: {
         allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: "Roles",
-          key: "id",
+        type: DataTypes.ENUM("admin", "user"),
+        defaultValue: "user",
+        validate: {
+          isIn: [["admin", "user"]],
         },
       },
       password: {

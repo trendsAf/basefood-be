@@ -1,29 +1,26 @@
 import { responses } from "./responses";
 
 const userProperties = {
-  fullName: { type: "string" },
-  userName: { type: "string" },
-  phoneNumber: { type: "string" },
+  firstName: { type: "string" },
+  lastName: { type: "string" },
+  email: { type: "string", format: "email" },
   companyName: { type: "string" },
   companyAddress: { type: "string" },
-  companyType: { type: "string" },
   companyCategory: { type: "string" },
-  email: { type: "string", format: "email" },
-  roleId: { type: "integer" },
+  position: { type: "string" },
   password: { type: "string", format: "password" },
 };
 
 const userResponseProperties = {
   id: { type: "integer" },
-  fullName: userProperties.fullName,
-  userName: userProperties.userName,
-  phoneNumber: userProperties.phoneNumber,
+  firstName: userProperties.firstName,
+  lastName: userProperties.lastName,
+  email: userProperties.email,
   companyName: userProperties.companyName,
   companyAddress: userProperties.companyAddress,
-  companyType: userProperties.companyType,
   companyCategory: userProperties.companyCategory,
-  email: userProperties.email,
-  roleId: userProperties.roleId,
+  position: userProperties.position,
+  role: { type: "string" },
 };
 
 const userPaths = {
@@ -38,16 +35,14 @@ const userPaths = {
             schema: {
               type: "object",
               required: [
-                "fullName",
+                "firstName",
+                "lastName",
                 "email",
-                "userName",
-                "password",
-                "phoneNumber",
                 "companyName",
                 "companyAddress",
-                "companyType",
                 "companyCategory",
-                "roleId",
+                "position",
+                "password",
               ],
               properties: userProperties,
             },
